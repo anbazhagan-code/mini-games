@@ -1,0 +1,174 @@
+:root {
+  --primary-color: #4361ee;
+  --secondary-color: #3f37c9;
+  --x-color: #f72585;
+  --o-color: #4cc9f0;
+  --light-color: #f8f9fa;
+  --dark-color: #212529;
+  --border-color: #dee2e6;
+  --winning-bg: rgba(76, 201, 240, 0.1);
+  --active-color: rgba(67, 97, 238, 0.2);
+}
+
+.tic-tac-toe-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  max-width: 500px;
+  margin: 0 auto;
+  padding: 2rem;
+  font-family: 'Poppins', sans-serif;
+}
+
+.game-title {
+  color: var(--primary-color);
+  margin-bottom: 1rem;
+  font-size: 2rem;
+}
+
+.game-controls {
+  width: 100%;
+  margin-bottom: 1.5rem;
+}
+
+.mode-selector, .difficulty-selector {
+  display: flex;
+  justify-content: center;
+  gap: 0.5rem;
+  margin-bottom: 1rem;
+  flex-wrap: wrap;
+}
+
+.mode-btn, .difficulty-btn {
+  padding: 0.5rem 1rem;
+  border: 1px solid var(--border-color);
+  background: white;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.9rem;
+}
+
+.mode-btn:hover, .difficulty-btn:hover {
+  background-color: #f5f5f5;
+}
+
+.mode-btn.active, .difficulty-btn.active {
+  background-color: var(--active-color);
+  border-color: var(--primary-color);
+  color: var(--primary-color);
+  font-weight: 500;
+}
+
+.game-status {
+  font-size: 1.2rem;
+  margin-bottom: 1.5rem;
+  font-weight: 500;
+  padding: 0.5rem 1rem;
+  border-radius: 8px;
+  text-align: center;
+}
+
+.game-status.winner {
+  background-color: var(--winning-bg);
+  color: var(--primary-color);
+}
+
+.game-status.draw {
+  color: var(--dark-color);
+}
+
+.board {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-gap: 10px;
+  width: 100%;
+  max-width: 300px;
+  margin-bottom: 1.5rem;
+}
+
+.square {
+  aspect-ratio: 1;
+  background: white;
+  border: 2px solid var(--border-color);
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  font-size: 2rem;
+  position: relative;
+}
+
+.square:hover:not(:disabled) {
+  transform: scale(1.03);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.square:disabled {
+  cursor: not-allowed;
+  opacity: 0.8;
+}
+
+.square.winning {
+  background-color: var(--winning-bg);
+  border-color: var(--primary-color);
+}
+
+.x-icon {
+  color: var(--x-color);
+  font-size: 2.5rem;
+}
+
+.o-icon {
+  color: var(--o-color);
+  font-size: 2rem;
+}
+
+.reset-btn {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  background: var(--primary-color);
+  color: white;
+  border: none;
+  padding: 0.8rem 1.5rem;
+  border-radius: 8px;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  margin-top: 1rem;
+}
+
+.reset-btn:hover {
+  background: var(--secondary-color);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.reset-icon {
+  font-size: 1rem;
+}
+
+@media (max-width: 480px) {
+  .tic-tac-toe-container {
+    padding: 1rem;
+  }
+  
+  .game-title {
+    font-size: 1.5rem;
+  }
+  
+  .square {
+    font-size: 1.5rem;
+  }
+  
+  .mode-btn, .difficulty-btn {
+    padding: 0.4rem 0.8rem;
+    font-size: 0.8rem;
+  }
+}

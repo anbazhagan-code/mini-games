@@ -1,0 +1,49 @@
+.typing-container {
+  max-width: 700px;
+  margin: 40px auto;
+  font-family: 'Segoe UI', sans-serif;
+  text-align: center;
+}
+
+.word-box {
+  padding: 15px;
+  background-color: #f5f5f5;
+  margin-bottom: 20px;
+  border-radius: 8px;
+  min-height: 80px;
+  font-size: 20px;
+  line-height: 1.5;
+}
+
+.word-box span {
+  margin: 5px;
+  display: inline-block;
+}
+
+.active-word {
+  color: #ffffff;
+  background-color: #2196f3;
+  padding: 3px 8px;
+  border-radius: 4px;
+}
+
+input[type='text'] {
+  padding: 10px;
+  width: 80%;
+  font-size: 18px;
+  margin-bottom: 15px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+}
+
+.stats p {
+  font-size: 16px;
+  margin: 5px 0;
+}
+
+.result {
+  margin-top: 20px;
+  padding: 15px;
+  background-color: #e0ffe0;
+  border-radius: 8px;
+}

@@ -1,0 +1,67 @@
+/* PuzzleGame.css */
+.puzzle-container {
+  max-width: 400px;
+  margin: 40px auto;
+  text-align: center;
+  font-family: 'Segoe UI', sans-serif;
+}
+
+.controls {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 5px;
+}
+
+.tile {
+  width: 90px;
+  height: 90px;
+  background-color: #1976d2;
+  color: #fff;
+  font-size: 24px;
+  font-weight: bold;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: background 0.3s;
+}
+
+.tile:hover {
+  background-color: #1565c0;
+}
+
+.tile.empty {
+  background-color: #e0e0e0;
+  cursor: default;
+}
+
+button {
+  padding: 6px 12px;
+  font-size: 16px;
+  border: none;
+  background-color: #43a047;
+  color: white;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background 0.3s;
+}
+
+button:hover {
+  background-color: #388e3c;
+}
+
+.win-message {
+  margin-top: 15px;
+  padding: 10px;
+  background-color: #ffeb3b;
+  font-weight: bold;
+  border-radius: 6px;
+}
