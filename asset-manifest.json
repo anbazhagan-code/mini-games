@@ -1,13 +1,33 @@
 {
   "files": {
-    "main.css": "/mini-games/static/css/main.6ef057ae.css",
-    "main.js": "/mini-games/static/js/main.a839aaa0.js",
+    "main.css": "/mini-games/static/css/main.a9dfde06.css",
+    "main.js": "/mini-games/static/js/main.5c15b8e9.js",
+    "static/css/66.93451f22.chunk.css": "/mini-games/static/css/66.93451f22.chunk.css",
+    "static/js/66.656fa275.chunk.js": "/mini-games/static/js/66.656fa275.chunk.js",
+    "static/css/45.fa37c64a.chunk.css": "/mini-games/static/css/45.fa37c64a.chunk.css",
+    "static/js/45.19047475.chunk.js": "/mini-games/static/js/45.19047475.chunk.js",
+    "static/css/81.5d5b5512.chunk.css": "/mini-games/static/css/81.5d5b5512.chunk.css",
+    "static/js/81.4644c71e.chunk.js": "/mini-games/static/js/81.4644c71e.chunk.js",
+    "static/css/0.2d17dff5.chunk.css": "/mini-games/static/css/0.2d17dff5.chunk.css",
+    "static/js/0.39daa3ec.chunk.js": "/mini-games/static/js/0.39daa3ec.chunk.js",
+    "static/css/963.8fbba736.chunk.css": "/mini-games/static/css/963.8fbba736.chunk.css",
+    "static/js/963.c7cfaff0.chunk.js": "/mini-games/static/js/963.c7cfaff0.chunk.js",
     "index.html": "/mini-games/index.html",
-    "main.6ef057ae.css.map": "/mini-games/static/css/main.6ef057ae.css.map",
-    "main.a839aaa0.js.map": "/mini-games/static/js/main.a839aaa0.js.map"
+    "main.a9dfde06.css.map": "/mini-games/static/css/main.a9dfde06.css.map",
+    "main.5c15b8e9.js.map": "/mini-games/static/js/main.5c15b8e9.js.map",
+    "66.93451f22.chunk.css.map": "/mini-games/static/css/66.93451f22.chunk.css.map",
+    "66.656fa275.chunk.js.map": "/mini-games/static/js/66.656fa275.chunk.js.map",
+    "45.fa37c64a.chunk.css.map": "/mini-games/static/css/45.fa37c64a.chunk.css.map",
+    "45.19047475.chunk.js.map": "/mini-games/static/js/45.19047475.chunk.js.map",
+    "81.5d5b5512.chunk.css.map": "/mini-games/static/css/81.5d5b5512.chunk.css.map",
+    "81.4644c71e.chunk.js.map": "/mini-games/static/js/81.4644c71e.chunk.js.map",
+    "0.2d17dff5.chunk.css.map": "/mini-games/static/css/0.2d17dff5.chunk.css.map",
+    "0.39daa3ec.chunk.js.map": "/mini-games/static/js/0.39daa3ec.chunk.js.map",
+    "963.8fbba736.chunk.css.map": "/mini-games/static/css/963.8fbba736.chunk.css.map",
+    "963.c7cfaff0.chunk.js.map": "/mini-games/static/js/963.c7cfaff0.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.6ef057ae.css",
-    "static/js/main.a839aaa0.js"
+    "static/css/main.a9dfde06.css",
+    "static/js/main.5c15b8e9.js"
   ]
 }
