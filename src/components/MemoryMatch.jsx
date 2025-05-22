@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { FaRedo, FaTrophy } from 'react-icons/fa';
 import '../assets/MemoryMatch.css';
 
-const CARD_SYMBOLS = ['🍩', '🧁', '🍰', '🍪', '🍫', '🍦', '🥧', '🍮'];
+const CARD_SYMBOLS = ['😀', '😢', '😡', '😨', '😍', '🤔', '😴', '😎'];
 
 function MemoryGame() {
   const [cards, setCards] = useState([]);

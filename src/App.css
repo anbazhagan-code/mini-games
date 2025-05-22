@@ -22,7 +22,7 @@ body {
 
 .app-main {
   flex: 1;
-  padding: 2rem;
+  padding: 0;
 }
 
 /* Home Page Styles */
@@ -105,8 +105,8 @@ body {
   margin: 0;
   transition: background 0.3s ease;
   position: absolute;
-  top: 20px;
-  left: 20px;
+  top: 45px;
+  left: 40px;
   z-index: 999;
   box-shadow: 0 4px 12px rgba(0, 230, 230, 0.3);
 }
@@ -137,7 +137,7 @@ body {
 }
 
 /* Responsive tweaks */
-@media (max-width: 480px) {
+@media (max-width: 567px) {
   .welcome-message {
     font-size: 1.8rem;
   }
@@ -152,5 +152,9 @@ body {
 
   .game-icon {
     font-size: 2.2rem;
+  }
+  .back-home-btn{
+    top: 10px !important;
+    left: 15px  !important;
   }
 }

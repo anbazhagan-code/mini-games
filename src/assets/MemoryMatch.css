@@ -1,163 +1,238 @@
 /* MemoryMatch.css */
 
-body {
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-}
-
 .memory-game-container {
-  max-width: 800px;
-  margin: 0 auto;
-  padding: 30px 20px;
-  text-align: center;
-  background-color:rgb(70, 149, 95);
-  color: #fff;
-  border-radius: 12px;
-  box-shadow: 0 0 20px rgba(0, 0, 0, 0.7);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  background: linear-gradient(135deg, #fff5f5 0%, #ffebee 50%, #fce4ec 100%);
+  font-family: 'Comic Neue', cursive, sans-serif;
+  padding: 20px;
+  box-sizing: border-box;
 }
 
 .game-title {
-  font-size: 2rem;
-  margin-bottom: 15px;
-  color: #00d8ff;
+  color: #d81b60;
+  font-size: 3rem;
+  margin-bottom: 20px;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+  font-weight: 700;
+  letter-spacing: 1px;
 }
 
 .game-info {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-bottom: 20px;
-  flex-wrap: wrap;
+  width: 100%;
+  max-width: 600px;
+  margin-bottom: 25px;
+  background-color: rgba(255, 255, 255, 0.8);
+  padding: 15px;
+  border-radius: 15px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
 }
 
-.moves,
+.moves, .best-score {
+  font-size: 1.2rem;
+  color: #880e4f;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
 .best-score {
-  font-size: 1.1rem;
-  margin: 10px;
+  color: #ff9800;
 }
 
 .reset-btn {
-  background-color: #00d8ff;
-  color: #000;
+  padding: 10px 20px;
+  background-color: #d81b60;
+  color: white;
   border: none;
-  padding: 10px 16px;
-  border-radius: 8px;
+  border-radius: 50px;
+  font-size: 1rem;
+  font-weight: 600;
   cursor: pointer;
-  font-weight: bold;
+  transition: all 0.3s ease;
   display: flex;
   align-items: center;
-  gap: 6px;
-  transition: background-color 0.3s;
+  gap: 8px;
+  box-shadow: 0 4px 8px rgba(216, 27, 96, 0.3);
 }
 
 .reset-btn:hover {
-  background-color: #00c2e0;
+  background-color: #c2185b;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 12px rgba(216, 27, 96, 0.4);
+}
+
+.reset-btn:active {
+  transform: translateY(0);
 }
 
 .memory-board {
   display: grid;
-  grid-template-columns: repeat(4, 80px);
+  grid-template-columns: repeat(4, 1fr);
   gap: 15px;
-  justify-content: center;
-  margin: 0 auto;
+  max-width: 500px;
+  width: 100%;
+  margin-bottom: 30px;
 }
 
 .memory-card {
-  width: 80px;
-  height: 80px;
+  aspect-ratio: 1;
   perspective: 1000px;
   cursor: pointer;
+  position: relative;
+  transform-style: preserve-3d;
+  transition: transform 0.6s ease;
 }
 
-.memory-card .card-front,
-.memory-card .card-back {
+.memory-card.flipped {
+  transform: rotateY(180deg);
+}
+
+.card-front, .card-back {
+  position: absolute;
   width: 100%;
   height: 100%;
-  position: absolute;
   backface-visibility: hidden;
-  border-radius: 10px;
-  font-size: 2rem;
+  border-radius: 15px;
   display: flex;
   align-items: center;
   justify-content: center;
-  background-color: #1e1e1e;
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.4);
-  transition: transform 0.6s;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease;
 }
 
-.memory-card .card-back {
-  background-color: #444;
-  transform: rotateY(0deg);
-}
-
-.memory-card.flipped .card-front {
-  transform: rotateY(0deg);
-}
-
-.memory-card .card-front {
+.card-front {
+  background-color: white;
   transform: rotateY(180deg);
+  font-size: 3rem;
+  color: #d81b60;
 }
 
-.memory-card.flipped .card-back {
-  transform: rotateY(180deg);
+.card-back {
+  background: linear-gradient(45deg, #ff4081, #ff9100);
+  font-size: 0;
 }
 
-.memory-card.flipped .card-front {
-  transform: rotateY(0deg);
+.memory-card:not(.flipped):hover .card-back {
+  transform: scale(0.95);
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
 }
 
 .game-complete {
-  margin-top: 30px;
-  background-color: #222;
-  padding: 20px;
-  border-radius: 10px;
-  animation: fadeIn 0.5s ease-in-out;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.8);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  z-index: 100;
+  color: white;
+  text-align: center;
+  animation: fadeIn 0.5s ease;
 }
 
 .game-complete h3 {
-  color: #00ff99;
-  font-size: 1.5rem;
+  font-size: 3rem;
+  margin-bottom: 20px;
+  color: #ffeb3b;
 }
 
 .game-complete p {
-  font-size: 1.1rem;
-  margin: 10px 0;
+  font-size: 1.5rem;
+  margin-bottom: 10px;
 }
 
 .game-complete button {
-  padding: 10px 20px;
-  font-size: 1rem;
-  background-color: #00ff99;
-  color: #000;
+  margin-top: 30px;
+  padding: 15px 30px;
+  background-color: #4caf50;
+  color: white;
   border: none;
-  border-radius: 8px;
+  border-radius: 50px;
+  font-size: 1.2rem;
+  font-weight: 600;
   cursor: pointer;
-  margin-top: 10px;
-  transition: background-color 0.3s;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }
 
 .game-complete button:hover {
-  background-color: #00e688;
+  background-color: #388e3c;
+  transform: translateY(-3px);
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
 }
 
 @keyframes fadeIn {
-  from { opacity: 0; transform: translateY(20px); }
-  to { opacity: 1; transform: translateY(0); }
+  from { opacity: 0; }
+  to { opacity: 1; }
 }
 
-/* Responsive for smaller screens */
-@media (max-width: 500px) {
+/* Responsive adjustments */
+@media (max-width: 650px) {
   .memory-board {
-    grid-template-columns: repeat(4, 60px);
+    grid-template-columns: repeat(4, 1fr);
+    max-width: 400px;
     gap: 10px;
   }
-
-  .memory-card {
-    width: 60px;
-    height: 60px;
+  
+  .card-front {
+    font-size: 2rem;
   }
+  
+  .game-title {
+    font-size: 2.2rem;
+  }
+  
+  .game-info {
+    flex-wrap: wrap;
+    justify-content: space-between;
+    gap: 10px;
+  }
+}
 
-  .memory-card .card-front,
-  .memory-card .card-back {
-    font-size: 1.5rem;
+@media (max-width: 450px) {
+  .memory-board {
+    max-width: 300px;
+  }
+  
+  .card-front {
+    font-size: 1.8rem;
+  }
+  
+  .game-title {
+    font-size: 1.8rem;
+  }
+  
+  .moves, .best-score {
+    font-size: 1rem;
+  }
+  
+  .reset-btn {
+    padding: 8px 16px;
+    font-size: 0.9rem;
+  }
+  
+  .game-complete h3 {
+    font-size: 2rem;
+  }
+  
+  .game-complete p {
+    font-size: 1.2rem;
+  }
+  
+  .game-complete button {
+    padding: 12px 24px;
+    font-size: 1rem;
   }
 }

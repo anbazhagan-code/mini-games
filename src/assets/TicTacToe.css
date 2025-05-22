@@ -1,174 +1,226 @@
-:root {
-  --primary-color: #4361ee;
-  --secondary-color: #3f37c9;
-  --x-color: #f72585;
-  --o-color: #4cc9f0;
-  --light-color: #f8f9fa;
-  --dark-color: #212529;
-  --border-color: #dee2e6;
-  --winning-bg: rgba(76, 201, 240, 0.1);
-  --active-color: rgba(67, 97, 238, 0.2);
-}
+/* TicTacToe.css */
 
 .tic-tac-toe-container {
   display: flex;
   flex-direction: column;
   align-items: center;
-  max-width: 500px;
-  margin: 0 auto;
-  padding: 2rem;
-  font-family: 'Poppins', sans-serif;
+  justify-content: center;
+  min-height: 100vh;
+  background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  padding: 20px;
+  box-sizing: border-box;
 }
 
 .game-title {
-  color: var(--primary-color);
-  margin-bottom: 1rem;
-  font-size: 2rem;
+  color: #3a4a6d;
+  font-size: 2.5rem;
+  margin: 20px 0;
+  text-shadow: 1px 1px 2px rgba(0,0,0,0.1);
 }
 
 .game-controls {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  margin-bottom: 25px;
   width: 100%;
-  margin-bottom: 1.5rem;
+  max-width: 500px;
 }
 
 .mode-selector, .difficulty-selector {
   display: flex;
   justify-content: center;
-  gap: 0.5rem;
-  margin-bottom: 1rem;
-  flex-wrap: wrap;
+  gap: 10px;
+  flex-wrap: nowrap;
 }
 
 .mode-btn, .difficulty-btn {
-  padding: 0.5rem 1rem;
-  border: 1px solid var(--border-color);
-  background: white;
+  padding: 10px 15px;
+  border: none;
   border-radius: 8px;
+  background-color: #e0e5ec;
+  color: #3a4a6d;
+  font-weight: 600;
   cursor: pointer;
   transition: all 0.3s ease;
+  box-shadow: 8px 8px 15px #b8b9be, -8px -8px 15px #ffffff;
   display: flex;
   align-items: center;
-  gap: 0.5rem;
-  font-size: 0.9rem;
+  gap: 8px;
 }
 
 .mode-btn:hover, .difficulty-btn:hover {
-  background-color: #f5f5f5;
+  transform: translateY(-2px);
+  box-shadow: 5px 5px 10px #b8b9be, -5px -5px 10px #ffffff;
 }
 
 .mode-btn.active, .difficulty-btn.active {
-  background-color: var(--active-color);
-  border-color: var(--primary-color);
-  color: var(--primary-color);
-  font-weight: 500;
+  background-color: #3a4a6d;
+  color: white;
+  box-shadow: inset 3px 3px 5px #2c3a5a, inset -3px -3px 5px #485b82;
 }
 
 .game-status {
-  font-size: 1.2rem;
-  margin-bottom: 1.5rem;
-  font-weight: 500;
-  padding: 0.5rem 1rem;
+  font-size: 1.3rem;
+  margin: 0;
+  padding: 10px 20px;
   border-radius: 8px;
-  text-align: center;
+  color: #3a4a6d;
+  font-weight: 600;
+  background-color: rgba(255, 255, 255, 0.8);
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease;
 }
 
 .game-status.winner {
-  background-color: var(--winning-bg);
-  color: var(--primary-color);
+  background-color: rgba(76, 175, 80, 0.2);
+  color: #2e7d32;
+  font-weight: bold;
+  animation: pulse 1.5s infinite;
 }
 
 .game-status.draw {
-  color: var(--dark-color);
+  background-color: rgba(255, 235, 59, 0.2);
+  color: #f57f17;
+  font-weight: bold;
+}
+
+@keyframes pulse {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.05); }
+  100% { transform: scale(1); }
 }
 
 .board {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   grid-gap: 10px;
+  margin: 20px 0;
+  max-width: 400px;
   width: 100%;
-  max-width: 300px;
-  margin-bottom: 1.5rem;
+  aspect-ratio: 1/1;
 }
 
 .square {
-  aspect-ratio: 1;
-  background: white;
-  border: 2px solid var(--border-color);
-  border-radius: 8px;
+  background: #e0e5ec;
+  border: none;
+  border-radius: 15px;
+  font-size: 3rem;
+  font-weight: bold;
+  cursor: pointer;
   display: flex;
   align-items: center;
   justify-content: center;
-  cursor: pointer;
   transition: all 0.3s ease;
-  font-size: 2rem;
-  position: relative;
+  box-shadow: 8px 8px 15px #b8b9be, -8px -8px 15px #ffffff;
+  aspect-ratio: 1/1;
 }
 
-.square:hover:not(:disabled) {
-  transform: scale(1.03);
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+.square:hover {
+  transform: translateY(-3px);
+  box-shadow: 10px 10px 20px #b8b9be, -10px -10px 20px #ffffff;
 }
 
-.square:disabled {
-  cursor: not-allowed;
-  opacity: 0.8;
+.square:active {
+  transform: translateY(1px);
+  box-shadow: inset 3px 3px 5px #b8b9be, inset -3px -3px 5px #ffffff;
 }
 
 .square.winning {
-  background-color: var(--winning-bg);
-  border-color: var(--primary-color);
+  background-color: rgba(76, 175, 80, 0.3);
+  animation: pulse 1.5s infinite;
 }
 
 .x-icon {
-  color: var(--x-color);
-  font-size: 2.5rem;
+  color: #3a4a6d;
+  font-size: 4rem;
+  animation: appear 0.3s ease;
 }
 
 .o-icon {
-  color: var(--o-color);
-  font-size: 2rem;
+  color: #d32f2f;
+  font-size: 3.5rem;
+  animation: appear 0.3s ease;
+}
+
+@keyframes appear {
+  from { opacity: 0; transform: scale(0.5); }
+  to { opacity: 1; transform: scale(1); }
 }
 
 .reset-btn {
-  display: flex;
-  align-items: center;
-  gap: 0.5rem;
-  background: var(--primary-color);
+  padding: 12px 25px;
+  background-color: #d81b60;
   color: white;
   border: none;
-  padding: 0.8rem 1.5rem;
   border-radius: 8px;
-  font-size: 1rem;
+  font-size: 1.1rem;
+  font-weight: 600;
   cursor: pointer;
   transition: all 0.3s ease;
-  margin-top: 1rem;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  box-shadow: 5px 5px 10px #b8b9be, -5px -5px 10px #ffffff;
 }
 
 .reset-btn:hover {
-  background: var(--secondary-color);
+  background-color: #2c3a5a;
   transform: translateY(-2px);
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  box-shadow: 8px 8px 15px #b8b9be, -8px -8px 15px #ffffff;
+}
+
+.reset-btn:active {
+  transform: translateY(1px);
 }
 
 .reset-icon {
-  font-size: 1rem;
+  transition: transform 0.5s ease;
 }
 
-@media (max-width: 480px) {
-  .tic-tac-toe-container {
-    padding: 1rem;
-  }
-  
-  .game-title {
-    font-size: 1.5rem;
+.reset-btn:hover .reset-icon {
+  transform: rotate(180deg);
+}
+
+/* Responsive adjustments */
+@media (max-width: 600px) {
+  .board {
+    max-width: 300px;
   }
   
   .square {
-    font-size: 1.5rem;
+    font-size: 2.5rem;
+  }
+  
+  .x-icon {
+    font-size: 3rem;
+  }
+  
+  .o-icon {
+    font-size: 2.5rem;
+  }
+  
+  .game-title {
+    font-size: 2rem;
+  }
+  
+  .game-status {
+    font-size: 1.1rem;
   }
   
   .mode-btn, .difficulty-btn {
-    padding: 0.4rem 0.8rem;
-    font-size: 0.8rem;
+    padding: 8px 12px;
+    font-size: 0.9rem;
+  }
+}
+
+@media (max-width: 400px) {
+  .board {
+    max-width: 250px;
+  }
+  
+  .square {
+    font-size: 2rem;
   }
 }

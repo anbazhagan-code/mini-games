@@ -1,5 +1,5 @@
 // gamesConfig.js
-import { FaGamepad, FaMemory, FaKeyboard, FaPuzzlePiece, FaBasketballBall } from 'react-icons/fa';
+import { FaGamepad, FaMemory, FaKeyboard, FaPuzzlePiece, FaBasketballBall, FaBomb } from 'react-icons/fa';
 
 export const games = [
   {
@@ -42,5 +42,13 @@ export const games = [
     icon: <FaBasketballBall />,
     component: () => import('./components/CatchTheBall'),
   },
+  {
+    id: 'minesweeper',
+    path: '/minesweeper',
+    name: 'Minesweeper',
+    description: 'Classic bomb-avoidance puzzle',
+    icon: <FaBomb />,
+    component: () => import('./components/Minesweeper'),
+  }
   // ADD NEW GAMES HERE (Just add a new object)
 ];
