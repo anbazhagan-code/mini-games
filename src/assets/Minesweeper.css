@@ -1,230 +1,198 @@
-.game-container {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  min-height: 100vh;
-  background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+.minesweeper {
+  max-width: 800px;
+  margin: 0 auto;
   padding: 20px;
-  box-sizing: border-box;
+  font-family: Arial, sans-serif;
+  text-align: center;
+  color: #fff;
+  background: linear-gradient(135deg, #000000, #721936); /* gradient */
+  border-radius: 12px;
+  min-height: 100vh;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.4);
+  animation: fadeIn 0.6s ease-in-out;
 }
 
-.game-title {
-  color: #3a4a6d;
-  font-size: 2.5rem;
-  margin-bottom: 20px;
-  text-shadow: 1px 1px 2px rgba(0,0,0,0.1);
+.minesweeper h1 {
+  color: #ff3959;
+  margin-bottom: 10px;
+  margin-top: 40px;
+
 }
 
-.game-controls {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  gap: 15px;
-  margin-bottom: 25px;
-  width: 100%;
-  max-width: 600px;
-}
-
-.difficulty-selector {
-  display: flex;
-  gap: 10px;
-}
-
-.difficulty-btn, .reset-btn {
-  padding: 10px 15px;
-  border: none;
-  border-radius: 8px;
-  background-color: #e0e5ec;
-  color: #3a4a6d;
-  font-weight: 600;
-  cursor: pointer;
-  transition: all 0.3s ease;
-  box-shadow: 8px 8px 15px #b8b9be, -8px -8px 15px #ffffff;
-  display: flex;
-  align-items: center;
-  gap: 8px;
-}
-
-.difficulty-btn:hover, .reset-btn:hover {
-  transform: translateY(-2px);
-  box-shadow: 5px 5px 10px #b8b9be, -5px -5px 10px #ffffff;
-}
-
-.difficulty-btn.active {
-  background-color: #3a4a6d;
-  color: white;
-  box-shadow: inset 3px 3px 5px #2c3a5a, inset -3px -3px 5px #485b82;
-}
-
-.reset-btn {
-  background-color: #e74c3c;
-  color: white;
-}
-
-.game-info {
+.controls {
   display: flex;
   justify-content: space-between;
-  width: 100%;
-  max-width: 500px;
+  align-items: center;
   margin-bottom: 20px;
-  font-size: 1.2rem;
-  font-weight: 600;
-  color: #3a4a6d;
+  padding: 10px;
+  background-color: #f5f5f5;
+  border-radius: 5px;
 }
 
-.mines-remaining {
+.difficulty button {
+  padding: 8px 15px;
+  margin: 0 5px;
+  border: none;
+  border-radius: 4px;
+  background-color: #e0e0e0;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.difficulty button.active {
+  background-color: #3498db;
+  color: white;
+}
+
+.reset {
+  padding: 8px 15px;
+  border: none;
+  border-radius: 4px;
+  background-color: #2ecc71;
+  color: white;
+  cursor: pointer;
   display: flex;
   align-items: center;
   gap: 5px;
 }
 
-.game-status {
-  padding: 5px 10px;
-  border-radius: 5px;
+.reset:hover {
+  background-color: #27ae60;
 }
 
-.game-status.game-over {
-  background-color: rgba(231, 76, 60, 0.2);
-  color: #c0392b;
+.game-info {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 15px;
+  font-size: 1.2em;
 }
 
-.game-status.game-won {
-  background-color: rgba(46, 204, 113, 0.2);
-  color: #27ae60;
-}
-
-.game-board {
-  display: grid;
-  grid-template-rows: repeat(var(--grid-size), 1fr);
-  gap: 3px;
-  background-color: #95a5a6;
-  border: 3px solid #7f8c8d;
-  border-radius: 8px;
-  padding: 3px;
-  box-shadow: 0 4px 10px rgba(0,0,0,0.2);
-}
-
-.board-row {
-  display: grid;
-  grid-template-columns: repeat(var(--grid-size), 1fr);
-  gap: 3px;
-}
-
-.board-cell {
-  width: 30px;
-  height: 30px;
-  background-color: #bdc3c7;
+.mines-count {
   display: flex;
   align-items: center;
-  justify-content: center;
+  gap: 5px;
+  color: #e74c3c;
+}
+
+.status {
   font-weight: bold;
-  font-size: 1.1rem;
+  min-width: 120px;
+}
+
+.status.won {
+  color: #2ecc71;
+}
+
+.status.lost {
+  color: #e74c3c;
+}
+
+.board {
+  display: inline-grid;
+  grid-template-columns: repeat(var(--size), 30px);
+  grid-template-rows: repeat(var(--size), 30px);
+  gap: 2px;
+  background-color: #bdbdbd;
+  padding: 10px;
+  border-radius: 5px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.row {
+  display: contents;
+}
+
+.cell {
+  width: 30px;
+  height: 30px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #e0e0e0;
   cursor: pointer;
+  font-weight: bold;
   user-select: none;
-  transition: all 0.2s ease;
-  border-radius: 3px;
+  border-radius: 2px;
+  transition: all 0.1s;
 }
 
-.board-cell:hover {
-  background-color: #a6acaf;
+.cell:hover:not(.revealed) {
+  background-color: #d0d0d0;
 }
 
-.board-cell.revealed {
-  background-color: #ecf0f1;
+.cell.revealed {
+  background-color: #f5f5f5;
+  cursor: default;
 }
 
-.board-cell.mine {
-  background-color: #e74c3c;
+.cell.mine {
+  background-color: #ffcdd2;
 }
 
-.mine-icon {
-  color: #2c3e50;
-  font-size: 0.9rem;
+.bomb {
+  color: #333;
 }
 
-.flag-icon {
-  color: #c0392b;
-  font-size: 0.9rem;
+.flag {
+  color: #e74c3c;
 }
 
-.game-result-overlay {
+.game-overlay {
   position: fixed;
   top: 0;
   left: 0;
   right: 0;
   bottom: 0;
-  background-color: rgba(0,0,0,0.8);
+  background-color: rgba(0, 0, 0, 0.7);
   display: flex;
-  align-items: center;
   justify-content: center;
+  align-items: center;
   z-index: 100;
-  animation: fadeIn 0.3s ease;
 }
 
-.game-result {
+.message {
   background-color: white;
   padding: 30px;
-  border-radius: 15px;
+  border-radius: 10px;
   text-align: center;
-  max-width: 400px;
-  width: 90%;
-  box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);
+  position: absolute;
+  top: 80px;
 }
 
-.game-result h3 {
-  font-size: 2rem;
-  margin-bottom: 15px;
-  color: #3a4a6d;
+.message h2 {
+  margin-top: 0;
 }
 
-.game-result p {
-  font-size: 1.2rem;
-  margin-bottom: 20px;
-  color: #7f8c8d;
-}
-
-.game-result button {
-  padding: 12px 30px;
-  background-color: #3a4a6d;
+.message button {
+  padding: 10px 20px;
+  margin-top: 15px;
+  background-color: #3498db;
   color: white;
   border: none;
-  border-radius: 8px;
-  font-size: 1.1rem;
-  font-weight: 600;
+  border-radius: 5px;
   cursor: pointer;
-  transition: all 0.3s ease;
-  box-shadow: 5px 5px 10px rgba(0,0,0,0.1);
+  font-size: 1em;
 }
 
-.game-result button:hover {
-  background-color: #2c3a5a;
-  transform: translateY(-2px);
-  box-shadow: 8px 8px 15px rgba(0,0,0,0.2);
-}
-
-@keyframes fadeIn {
-  from { opacity: 0; }
-  to { opacity: 1; }
+.message button:hover {
+  background-color: #2980b9;
 }
 
 @media (max-width: 600px) {
-  .game-title {
-    font-size: 2rem;
+  .board {
+    grid-template-columns: repeat(var(--size), 25px);
+    grid-template-rows: repeat(var(--size), 25px);
   }
   
-  .board-cell {
+  .cell {
     width: 25px;
     height: 25px;
-    font-size: 0.9rem;
+    font-size: 0.8em;
   }
   
-  .game-result {
-    padding: 20px;
-  }
-  
-  .game-result h3 {
-    font-size: 1.5rem;
+  .controls {
+    flex-direction: column;
+    gap: 10px;
   }
 }
