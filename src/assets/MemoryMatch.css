@@ -201,7 +201,7 @@
   }
 }
 
-@media (max-width: 450px) {
+@media (max-width: 400px) {
   .memory-board {
     max-width: 300px;
   }

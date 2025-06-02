@@ -35,14 +35,6 @@ export const games = [
     component: () => import('./components/PuzzleGame'),
   },
   {
-    id: 'catch-the-ball',
-    path: '/catch-the-ball',
-    name: 'Catch The Ball',
-    description: 'Quick reflexes needed',
-    icon: <FaBasketballBall />,
-    component: () => import('./components/CatchTheBall'),
-  },
-  {
     id: 'minesweeper',
     path: '/minesweeper',
     name: 'Minesweeper',

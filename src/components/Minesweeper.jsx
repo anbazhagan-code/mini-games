@@ -32,15 +32,15 @@ const Minesweeper = () => {
     switch (difficulty) {
       case 'easy':
         setGridSize(8);
-        setMineCount(10);
+        setMineCount(5);
         break;
       case 'hard':
         setGridSize(12);
-        setMineCount(24);
+        setMineCount(12);
         break;
       default: // medium
         setGridSize(10);
-        setMineCount(15);
+        setMineCount(8);
     }
   }, [difficulty]);
 

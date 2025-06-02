@@ -8,8 +8,9 @@ import './App.css';
 // Lazy load components (better performance)
 const BackToHome = () => (
   <Link to="/mini-games" className="back-home-btn">
-    <FaHome className="icon" /> Back to Home
-  </Link>
+  <FaHome className="icon" />
+  <span className="btn-text">Back to Home</span>
+</Link>
 );
 
 function App() {
