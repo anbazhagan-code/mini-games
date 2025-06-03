@@ -1,2 +1,0 @@
-.game-wrapper{font-family:Arial,sans-serif;margin-top:30px;text-align:center}.game-area{background-color:#f0f8ff;border:2px solid #333;height:400px;margin:20px auto;overflow:hidden;position:relative;width:100%}.ball{background-color:crimson;border-radius:50%;height:30px;transition:top .05s linear;width:30px}.ball,.catcher{position:absolute}.catcher{background-color:#2196f3;bottom:0;height:20px;transform:translateX(-50%);width:80px}.score{font-size:18px;margin:10px 0}.game-over{margin-top:20px}
-/*# sourceMappingURL=963.8fbba736.chunk.css.map*/
