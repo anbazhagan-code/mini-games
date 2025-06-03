@@ -1,31 +1,36 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <meta charset="utf-8" />
-    <link rel="icon" href="%PUBLIC_URL%/favicon.ico" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="theme-color" content="#000000" />
-    <meta
-      name="description"
-      content="Web site created using create-react-app"
-    />
-    <link rel="apple-touch-icon" href="%PUBLIC_URL%/logo192.png" />
-    <!--
-      manifest.json provides metadata used when your web app is installed on a
-      user's mobile device or desktop. See https://developers.google.com/web/fundamentals/web-app-manifest/
-    -->
-    <link rel="manifest" href="%PUBLIC_URL%/manifest.json" />
-    <!--
-      Notice the use of %PUBLIC_URL% in the tags above.
-      It will be replaced with the URL of the `public` folder during the build.
-      Only files inside the `public` folder can be referenced from the HTML.
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-      Unlike "/favicon.ico" or "favicon.ico", "%PUBLIC_URL%/favicon.ico" will
-      work correctly both with client-side routing and a non-root public URL.
-      Learn how to configure a non-root public URL by running `npm run build`.
-    -->
-    <title>Mini Games</title>
-  </head>
+  <title>Mini Games | Play Fun and Mind Games</title>
+  <meta name="description" content="Enjoy a collection of mini games including puzzles, memory games, and fun challenges. Play now!" />
+  <meta name="keywords" content="mini games, react games, puzzle, memory match, brain games, fun games" />
+  <meta name="author" content="Anbazhagan" />
+  <meta name="theme-color" content="#0f2027" />
+
+  <!-- Favicon and Manifest -->
+  <link rel="icon" href="%PUBLIC_URL%/icon_1.png" />
+  <link rel="apple-touch-icon" href="%PUBLIC_URL%/icon_1.png" />
+  <link rel="manifest" href="%PUBLIC_URL%/manifest.json" />
+
+  <!-- Social Media Meta Tags -->
+  <meta property="og:title" content="Mini Games" />
+  <meta property="og:description" content="A collection of interactive and fun mini games built with React." />
+  <meta property="og:image" content="%PUBLIC_URL%/mini-game.jpg" />
+  <meta property="og:url" content="https://anbazhagan-code.github.io/mini-games" />
+  <meta property="og:type" content="website" />
+
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Mini Games" />
+  <meta name="twitter:description" content="Play fun and interactive mini games online for free." />
+  <meta name="twitter:image" content="%PUBLIC_URL%/mini-game.jpg" />
+
+  <!-- Google Font (Optional) -->
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet" />
+</head>
   <body>
     <noscript>You need to enable JavaScript to run this app.</noscript>
     <div id="root"></div>
@@ -39,5 +44,53 @@
       To begin the development, run `npm start` or `yarn start`.
       To create a production bundle, use `npm run build` or `yarn build`.
     -->
+      <script>
+        /* Add this JavaScript for particles (place before closing body tag) */
+document.addEventListener('DOMContentLoaded', function() {
+  const particles = 50;
+  const particleContainer = document.createElement('div');
+  particleContainer.style.position = 'fixed';
+  particleContainer.style.top = '0';
+  particleContainer.style.left = '0';
+  particleContainer.style.width = '100%';
+  particleContainer.style.height = '100%';
+  particleContainer.style.pointerEvents = 'none';
+  particleContainer.style.zIndex = '-1';
+  document.body.appendChild(particleContainer);
+
+  for (let i = 0; i < particles; i++) {
+    const particle = document.createElement('div');
+    particle.className = 'particle';
+    
+    const size = Math.random() * 3 + 1;
+    const posX = Math.random() * 100;
+    const posY = Math.random() * 100;
+    const opacity = Math.random() * 0.5 + 0.1;
+    const duration = Math.random() * 20 + 10;
+    
+    particle.style.width = `${size}px`;
+    particle.style.height = `${size}px`;
+    particle.style.left = `${posX}%`;
+    particle.style.top = `${posY}%`;
+    particle.style.opacity = opacity;
+    particle.style.animation = `float ${duration}s linear infinite`;
+    
+    particleContainer.appendChild(particle);
+    
+    // Add animation for each particle
+    const keyframes = `
+      @keyframes float {
+        0% { transform: translate(0, 0); }
+        50% { transform: translate(${Math.random() * 100 - 50}px, ${Math.random() * 100 - 50}px); }
+        100% { transform: translate(0, 0); }
+      }
+    `;
+    
+    const style = document.createElement('style');
+    style.innerHTML = keyframes;
+    document.head.appendChild(style);
+  }
+});
+      </script>
   </body>
 </html>
