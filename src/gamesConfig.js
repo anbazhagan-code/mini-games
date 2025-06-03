@@ -1,5 +1,5 @@
 // gamesConfig.js
-import { FaGamepad, FaMemory, FaKeyboard, FaPuzzlePiece, FaBomb, FaHandRock } from 'react-icons/fa';
+import { FaGamepad, FaMemory, FaKeyboard, FaPuzzlePiece, FaBomb, FaHandRock, FaHammer, FaDove, FaBacon, FaCircle, FaSquare } from 'react-icons/fa';
 
 export const games = [
   {
@@ -43,12 +43,52 @@ export const games = [
     component: () => import('./components/Minesweeper'),
   },
   {
-  id: 'rock-paper-scissors',
-  path: '/rock-paper-scissors',
-  name: 'Rock Paper Scissors',
-  description: 'Play the classic hand game!',
-  icon: <FaHandRock />,
-  component: () => import('./components/RockPaperScissors'),
-},
+    id: 'rock-paper-scissors',
+    path: '/rock-paper-scissors',
+    name: 'Rock Paper Scissors',
+    description: 'Play the classic hand game!',
+    icon: <FaHandRock />,
+    component: () => import('./components/RockPaperScissors'),
+  },
+  {
+    id: 'whack-a-mole',
+    path: '/whack-a-mole',
+    name: 'Whack-a-Mole',
+    description: 'Hit the moles as they pop up!',
+    icon: <FaHammer />,
+    component: () => import('./components/WhackAMole'),
+  },
+  {
+      id: 'flappy-bird',
+      path: '/flappy-bird',
+      name: 'Flappy Bird Clone',
+      description: 'Navigate a bird through pipes!',
+      icon: <FaDove />,
+      component: () => import('./components/FlappyBird'),
+  },
+  {
+      id: 'snake-game',
+      path: '/snake-game',
+      name: 'Snake Game',
+      description: 'Classic snake game - grow as long as you can!',
+      icon: <FaBacon />,
+      component: () => import('./components/SnakeGame'),
+  },
+  {
+      id: 'bubble-shooter',
+      path: '/bubble-shooter',
+      name: 'Bubble Shooter',
+      description: 'Shoot and match colorful bubbles!',
+      icon: <FaCircle />,
+      component: () => import('./components/BubbleShooter'),
+  },
+  {
+      id: '2048',
+      path: '/2048',
+      name: '2048',
+      description: 'Slide and merge tiles to reach 2048!',
+      icon: <FaSquare />,
+      component: () => import('./components/Game2048'),
+  },
   // ADD NEW GAMES HERE (Just add a new object)
 ];

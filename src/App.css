@@ -271,3 +271,24 @@ body::after {
   }
 }
 
+.loading-container {
+  text-align: center;
+  padding: 60px 20px;
+  color: #ffffff;
+}
+
+.spinner {
+  margin: 0 auto 20px;
+  border: 6px solid #555;
+  border-top: 6px solid #00bfff;
+  border-radius: 50%;
+  width: 48px;
+  height: 48px;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}

@@ -1,0 +1,87 @@
+.flappy-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background: linear-gradient(to bottom, #87ceeb, #e0f7fa);
+}
+
+.game-area {
+  position: relative;
+  width: 400px;
+  height: 500px;
+  background-color: #cde;
+  border: 3px solid #333;
+  overflow: hidden;
+  border-radius: 12px;
+}
+
+.bird {
+  position: absolute;
+  left: 50px;
+  width: 40px;
+  height: 40px;
+  background-color: #ffeb3b;
+  border-radius: 50%;
+  box-shadow: 0 0 8px #00000033;
+}
+
+.pipe {
+  position: absolute;
+  width: 60px;
+  background: linear-gradient(to bottom, #388e3c, #2e7d32);
+  border: 2px solid #1b5e20;
+  border-radius: 4px;
+}
+
+.top-pipe {
+  top: 0;
+}
+
+.bottom-pipe {
+  bottom: 0;
+}
+
+.score-label {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  font-size: 20px;
+  font-weight: bold;
+  color: #333;
+  background: rgba(255, 255, 255, 0.8);
+  padding: 6px 10px;
+  border-radius: 6px;
+}
+
+.game-over {
+  position: absolute;
+  top: 40%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+  background: rgba(255, 255, 255, 0.95);
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 0 10px #00000055;
+}
+
+.game-over p {
+  font-size: 24px;
+  margin-bottom: 10px;
+}
+
+.game-over button {
+  padding: 10px 16px;
+  background-color: #388e3c;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+.game-over button:hover {
+  background-color: #2e7d32;
+}
