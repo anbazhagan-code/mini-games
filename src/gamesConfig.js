@@ -75,14 +75,6 @@ export const games = [
       component: () => import('./components/SnakeGame'),
   },
   {
-      id: 'bubble-shooter',
-      path: '/bubble-shooter',
-      name: 'Bubble Shooter',
-      description: 'Shoot and match colorful bubbles!',
-      icon: <FaCircle />,
-      component: () => import('./components/BubbleShooter'),
-  },
-  {
       id: '2048',
       path: '/2048',
       name: '2048',

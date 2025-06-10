@@ -2,8 +2,35 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin-top: 2rem;
-  font-family: 'Segoe UI', sans-serif;
+  justify-content: center;
+  min-height: 100vh;
+  background-color: #1a1a1a;
+  color: #fff;
+  font-family: 'Arial', sans-serif;
+  padding: 20px;
+  box-sizing: border-box;
+}
+
+.game-header {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.game-header h1 {
+  color: #4CAF50;
+  margin: 0;
+  font-size: 2.5rem;
+  text-shadow: 0 0 5px rgba(76, 175, 80, 0.5);
+}
+
+.score-display {
+  font-size: 1.5rem;
+  margin-top: 10px;
+  color: #FFC107;
+}
+
+.game-board-container {
+  margin: 20px 0;
 }
 
 .snake-grid {
@@ -11,6 +38,8 @@
   flex-direction: column;
   border: 3px solid #333;
   background-color: #1e1e1e;
+  border-radius: 5px;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
 }
 
 .snake-row {
@@ -20,30 +49,183 @@
 .snake-cell {
   width: 25px;
   height: 25px;
-  border: 1px solid #444;
+  border: 1px solid rgba(255, 255, 255, 0.05);
   box-sizing: border-box;
   background-color: #2a2a2a;
 }
 
+@media (max-width: 500px) {
+  .snake-cell {
+    width: 20px;
+    height: 20px;
+  }
+}
+
 .snake-body {
-  background-color: #00ff66;
-  box-shadow: inset 0 0 3px #0f0;
+  background-color: #4CAF50;
+  box-shadow: inset 0 0 5px rgba(0, 0, 0, 0.3);
+  border-radius: 2px;
+}
+
+.snake-head {
+  background-color: #2E7D32;
+  border-radius: 4px;
+  position: relative;
+}
+
+.snake-head::after {
+  content: '';
+  position: absolute;
+  width: 4px;
+  height: 4px;
+  background-color: #fff;
+  border-radius: 50%;
+  top: 4px;
+  left: 4px;
 }
 
 .snake-food {
-  background-color: #ff3131;
-  box-shadow: 0 0 5px #f00;
+  background-color: #FF5722;
+  box-shadow: 0 0 10px rgba(255, 87, 34, 0.7);
   border-radius: 50%;
+  position: relative;
+  animation: pulse 0.8s infinite alternate;
 }
 
-.game-over-message {
-  color: red;
+@keyframes pulse {
+  from { transform: scale(0.9); }
+  to { transform: scale(1.1); }
+}
+
+.mobile-controls {
+  display: none;
+  margin-top: 30px;
+  flex-direction: column;
+  align-items: center;
+}
+
+.start-screen{
+  display: none;
+  margin-top: 30px;
+  flex-direction: column;
+  align-items: center;
+}
+
+@media (max-width: 768px) {
+  .mobile-controls {
+    display: flex;
+  }
+  .start-screen{
+  display: flex;
+}
+}
+
+.horizontal-controls {
+  display: flex;
+  gap: 30px;
+  margin-top: 10px;
+}
+
+.control-btn {
+  width: 60px;
+  height: 60px;
+  font-size: 1.8rem;
+  border-radius: 50%;
+  border: none;
+  background-color: #333;
+  color: white;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 4px 0 #222, 0 6px 8px rgba(0, 0, 0, 0.3);
+  transition: all 0.1s ease;
+  user-select: none;
+  touch-action: manipulation;
+}
+
+.control-btn:active {
+  transform: translateY(4px);
+  box-shadow: 0 1px 0 #222;
+}
+
+.up { background-color: #4CAF50; }
+.left { background-color: #2196F3; }
+.down { background-color: #FFC107; color: #333; }
+.right { background-color: #F44336; }
+
+.game-actions {
+  display: flex;
+  gap: 20px;
+  margin-top: 20px;
+}
+
+.action-btn {
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  background-color: #333;
+  color: white;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.action-btn:hover {
+  background-color: #444;
+}
+
+.action-btn:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.start-screen, .game-over-screen {
+  text-align: center;
+  margin: 20px 0;
+}
+
+.start-screen h2 {
+  color: #FFC107;
+  margin-bottom: 20px;
+}
+
+.game-over-screen h2 {
+  color: #F44336;
+  font-size: 2rem;
+  margin-bottom: 10px;
+}
+
+.game-over-screen p {
   font-size: 1.5rem;
-  margin-bottom: 1rem;
-  animation: blink 1s infinite;
+  margin-bottom: 20px;
 }
 
-@keyframes blink {
-  0%, 100% { opacity: 1; }
-  50% { opacity: 0.2; }
+.restart-btn {
+  padding: 12px 30px;
+  background-color: #4CAF50;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  font-size: 1.2rem;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.restart-btn:hover {
+  background-color: #45a049;
+}
+
+.mobile-controls-preview {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 30px;
+}
+
+.mobile-controls-preview .control-btn {
+  width: 50px;
+  height: 50px;
+  font-size: 1.5rem;
+  margin: 5px;
 }

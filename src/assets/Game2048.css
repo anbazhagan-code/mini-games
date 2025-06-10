@@ -7,6 +7,7 @@
           user-select: none;
         }
         .game-2048__title {
+          margin-top: 4rem;
           text-align: center;
           margin-bottom: 20px;
           font-weight: 700;
@@ -120,3 +121,61 @@
         .game-2048__restart-btn:hover {
           background: #d78443;
         }
+.game-2048__controls {
+  margin-top: 30px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+}
+
+.game-2048__controls > div {
+  display: flex;
+  justify-content: center;
+  gap: 8px;
+}
+
+.control-btn {
+  font-size: 2.2rem;
+  width: 70px;
+  height: 70px;
+  border-radius: 14px;
+  border: none;
+  background: #8f7a66;
+  color: #f9f6f2;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 
+    0 4px 0 #7a6b59,
+    0 6px 8px rgba(0, 0, 0, 0.2);
+  transition: all 0.1s ease;
+  user-select: none;
+  touch-action: manipulation;
+}
+
+.control-btn:hover {
+  background: #a68b78;
+  transform: translateY(-2px);
+  box-shadow: 
+    0 6px 0 #7a6b59,
+    0 8px 8px rgba(0, 0, 0, 0.2);
+}
+
+.control-btn:active {
+  background: #b69d8c;
+  transform: translateY(2px);
+  box-shadow: 
+    0 2px 0 #7a6b59,
+    0 3px 8px rgba(0, 0, 0, 0.2);
+}
+
+/* Responsive adjustments */
+@media (max-width: 500px) {
+  .control-btn {
+    width: 60px;
+    height: 60px;
+    font-size: 1.8rem;
+  }
+}
