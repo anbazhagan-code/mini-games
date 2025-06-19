@@ -160,18 +160,20 @@ export default function Game2048() {
       </div>
       <div className="game-2048__controls">
   <button onClick={() => handleMove(moveUp)} className="control-btn">↑</button>
-  <div>
+  <div style={{ display: 'flex', gap: '5rem' }}>
     <button onClick={() => handleMove(moveLeft)} className="control-btn">←</button>
-    <button onClick={() => handleMove(moveDown)} className="control-btn">↓</button>
     <button onClick={() => handleMove(moveRight)} className="control-btn">→</button>
   </div>
+  <button onClick={() => handleMove(moveDown)} className="control-btn">↓</button>
 </div>
       {(gameOver || won) && (
+      <div className="game-2048__overlay">
         <div className="game-2048__message">
           {won ? '🎉 You Win! 🎉' : 'Game Over 😞'}
           <button className="game-2048__restart-btn" onClick={restartGame}>Restart</button>
         </div>
-      )}
+      </div>
+    )}
     </div>
   );
 }

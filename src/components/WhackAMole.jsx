@@ -27,8 +27,8 @@ const WhackAMole = () => {
     setScore(prevScore => {
       const newScore = prevScore + 1;
       // Increase speed every 5 points
-      if (newScore % 5 === 0 && gameSpeed > 400) {
-        setGameSpeed(prevSpeed => prevSpeed - 100);
+      if (newScore % 5 === 0 && gameSpeed > 300) {
+        setGameSpeed(prevSpeed => Math.max(300, prevSpeed - 50));
       }
       return newScore;
     });
@@ -71,13 +71,14 @@ const WhackAMole = () => {
       });
 
       // Automatically hide the mole after a delay
+      const visibleTime = Math.max(500, gameSpeed - 100); // ⬅️ Give user enough time
       setTimeout(() => {
         setMoles(prev => {
           const newMoles = [...prev];
           newMoles[randomIndex] = false;
           return newMoles;
         });
-      }, Math.max(500, gameSpeed - 200)); // Ensure mole stays visible for at least 500ms
+      }, visibleTime);
     }, gameSpeed);
 
     return () => {

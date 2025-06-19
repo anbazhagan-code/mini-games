@@ -12,18 +12,22 @@
 }
 
 .game-header {
+  display: flex;
+  flex-direction: row;
   text-align: center;
   margin-bottom: 20px;
 }
 
 .game-header h1 {
   color: #4CAF50;
-  margin: 0;
   font-size: 2.5rem;
   text-shadow: 0 0 5px rgba(76, 175, 80, 0.5);
 }
 
 .score-display {
+  position: absolute;
+  right: 18px;
+  top: 18px;
   font-size: 1.5rem;
   margin-top: 10px;
   color: #FFC107;
@@ -47,18 +51,26 @@
 }
 
 .snake-cell {
-  width: 25px;
-  height: 25px;
-  border: 1px solid rgba(255, 255, 255, 0.05);
-  box-sizing: border-box;
-  background-color: #2a2a2a;
+    width: 25px;
+    height: 25px;
+    border: 1px solid #cccccc; /* Line color (border) */
+    box-sizing: border-box;
+    background-color: #f9f9f9; /* Background color */
 }
+
 
 @media (max-width: 500px) {
   .snake-cell {
     width: 20px;
     height: 20px;
   }
+
+.game-header h1 {
+  color: #4CAF50;
+  font-size: clamp(1.5rem, 5vw, 2.5rem);
+  text-shadow: 0 0 5px rgba(76, 175, 80, 0.5);
+}
+
 }
 
 .snake-body {
@@ -99,13 +111,12 @@
 
 .mobile-controls {
   display: none;
-  margin-top: 30px;
   flex-direction: column;
   align-items: center;
 }
 
 .start-screen{
-  display: none;
+  display: flex;
   margin-top: 30px;
   flex-direction: column;
   align-items: center;

@@ -1,11 +1,12 @@
 import React, { useState, useEffect, useRef } from 'react';
 import '../assets/FlappyBird.css';
+import birdImg from '../assets/bird.png';
 
-const GRAVITY = 0.8;
-const JUMP_STRENGTH = -10;
-const PIPE_GAP = 160;
+const GRAVITY = 0.5;
+const JUMP_STRENGTH = -7;
+const PIPE_GAP = 180;
 const PIPE_WIDTH = 60;
-const BIRD_WIDTH = 40;
+const BIRD_SIZE = 40;
 const GAME_HEIGHT = 500;
 const GAME_WIDTH = 400;
 
@@ -17,7 +18,7 @@ const FlappyBird = () => {
   const [isGameOver, setIsGameOver] = useState(false);
 
   const gameRef = useRef();
-  const intervalRef = useRef();
+  const gameInterval = useRef();
 
   const jump = () => {
     if (!isGameOver) setVelocity(JUMP_STRENGTH);
@@ -32,65 +33,85 @@ const FlappyBird = () => {
   };
 
   useEffect(() => {
-    const addPipe = () => {
-      const topHeight = Math.floor(Math.random() * 200) + 50;
-      setPipes((prev) => [
-        ...prev,
-        {
-          left: GAME_WIDTH,
-          topHeight,
-          bottomY: topHeight + PIPE_GAP,
-        },
-      ]);
-    };
+    if (isGameOver) return;
 
-    const pipeInterval = setInterval(addPipe, 2000);
+    const generatePipe = () => {
+    const minPipeHeight = 100; // avoid tiny top pipes
+    const maxPipeHeight = 250; // avoid huge top pipes
+    const topHeight = Math.floor(Math.random() * (maxPipeHeight - minPipeHeight)) + minPipeHeight;
+
+    setPipes((prev) => [
+      ...prev,
+      {
+        left: GAME_WIDTH,
+        topHeight,
+        bottomY: topHeight + PIPE_GAP,
+        scored: false
+      },
+    ]);
+  };
+
+    const pipeInterval = setInterval(generatePipe, 2000);
     return () => clearInterval(pipeInterval);
-  }, []);
+  }, [isGameOver]);
 
   useEffect(() => {
     if (isGameOver) return;
 
-    intervalRef.current = setInterval(() => {
-      setBirdY((y) => Math.min(GAME_HEIGHT - BIRD_WIDTH, y + velocity));
+    gameInterval.current = setInterval(() => {
+      setBirdY((y) => Math.min(GAME_HEIGHT - BIRD_SIZE, y + velocity));
       setVelocity((v) => v + GRAVITY);
 
-      setPipes((prev) =>
-        prev
-          .map((pipe) => ({ ...pipe, left: pipe.left - 4 }))
+      setPipes((prevPipes) =>
+        prevPipes
+          .map((pipe) => ({
+            ...pipe,
+            left: pipe.left - 4,
+          }))
           .filter((pipe) => pipe.left + PIPE_WIDTH > 0)
       );
     }, 30);
 
-    return () => clearInterval(intervalRef.current);
+    return () => clearInterval(gameInterval.current);
   }, [velocity, isGameOver]);
 
   useEffect(() => {
     pipes.forEach((pipe) => {
-      const inPipeX = pipe.left < BIRD_WIDTH + 50 && pipe.left + PIPE_WIDTH > 50;
-      const hitTop = birdY < pipe.topHeight;
-      const hitBottom = birdY + BIRD_WIDTH > pipe.bottomY;
+      const birdX = 60;
+      const birdBottom = birdY + BIRD_SIZE;
+      const inPipe = pipe.left < birdX + BIRD_SIZE && pipe.left + PIPE_WIDTH > birdX;
 
-      if (inPipeX && (hitTop || hitBottom)) {
+      const hitTop = birdY < pipe.topHeight;
+      const hitBottom = birdBottom > pipe.bottomY;
+
+      if (inPipe && (hitTop || hitBottom)) {
         setIsGameOver(true);
-        clearInterval(intervalRef.current);
+        clearInterval(gameInterval.current);
       }
 
-      if (pipe.left + PIPE_WIDTH === 50) {
+      // Score when passing pipe
+      if (!pipe.scored && pipe.left + PIPE_WIDTH < birdX) {
+        pipe.scored = true;
         setScore((s) => s + 1);
       }
     });
 
-    if (birdY + BIRD_WIDTH >= GAME_HEIGHT || birdY <= 0) {
+    if (birdY <= 0 || birdY + BIRD_SIZE >= GAME_HEIGHT) {
       setIsGameOver(true);
-      clearInterval(intervalRef.current);
+      clearInterval(gameInterval.current);
     }
   }, [pipes, birdY]);
 
   return (
     <div className="flappy-wrapper">
       <div className="game-area" ref={gameRef} onClick={jump}>
-        <div className="bird" style={{ top: birdY }}></div>
+        <div className="bird" style={{
+    top: birdY,
+    backgroundImage: `url(${birdImg})`,
+    backgroundSize: 'contain',
+    backgroundRepeat: 'no-repeat',
+    backgroundPosition: 'center',
+  }}></div>
 
         {pipes.map((pipe, index) => (
           <React.Fragment key={index}>
