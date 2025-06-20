@@ -1,11 +1,9 @@
-// App.js
 import React, { Suspense, lazy } from 'react';
-import { HashRouter as Router, Routes, Route, Link, useLocation } from 'react-router-dom';
+import { HashRouter as Router, Routes, Route, Link, useLocation, Navigate } from 'react-router-dom';
 import { FaHome } from 'react-icons/fa';
 import { games } from './gamesConfig';
 import './App.css';
 
-// Lazy back-to-home button
 const BackToHome = () => (
   <Link to="/mini-games" className="back-home-btn">
     <FaHome className="icon" />
@@ -13,7 +11,6 @@ const BackToHome = () => (
   </Link>
 );
 
-// Spinner component
 const LoadingSpinner = () => (
   <div className="loading-container">
     <div className="spinner"></div>
@@ -70,6 +67,9 @@ function AppContent() {
               }
             />
           ))}
+
+          {/* Catch-all redirect to /mini-games */}
+          <Route path="*" element={<Navigate to="/mini-games" replace />} />
         </Routes>
       </main>
 
