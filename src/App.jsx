@@ -1,6 +1,6 @@
 // App.js
 import React, { Suspense, lazy } from 'react';
-import { BrowserRouter as Router, Routes, Route, Link, useLocation } from 'react-router-dom';
+import { HashRouter as Router, Routes, Route, Link, useLocation } from 'react-router-dom';
 import { FaHome } from 'react-icons/fa';
 import { games } from './gamesConfig';
 import './App.css';
@@ -31,7 +31,7 @@ function App() {
 
 function AppContent() {
   const location = useLocation();
-  const showFooter = location.pathname === "/mini-games";
+  const showFooter = location.pathname.startsWith("/mini-games");
 
   return (
     <div className="app">

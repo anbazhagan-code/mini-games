@@ -59,7 +59,7 @@
 .game-over {
   position: absolute;
   top: 40%;
-  left: 50%;
+  left: 25%;
   transform: translate(-50%, -50%);
   background-color: rgba(0, 0, 0, 0.7);
   padding: 30px;
@@ -83,4 +83,16 @@
 
 .game-over button:hover {
   background: #e64a19;
+}
+.game-area,
+.bird,
+.pipe,
+button {
+  -webkit-tap-highlight-color: transparent;
+  outline: none;
+}
+
+/* Optional: Remove button focus ring */
+button:focus {
+  outline: none;
 }

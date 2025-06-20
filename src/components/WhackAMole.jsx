@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
 import '../assets/WhackAMole.css';
+import moleup from '../assets/mole-up.png';
 
 const WhackAMole = () => {
   const [score, setScore] = useState(0);
@@ -142,13 +143,12 @@ const WhackAMole = () => {
               onClick={() => whackMole(index)}
             >
               {isMoleUp && (
-                <div className="mole">
-                  <div className="eyes">
-                    <div className="eye"></div>
-                    <div className="eye"></div>
-                  </div>
-                  <div className="nose"></div>
-                </div>
+                <img
+                  src={moleup}
+                  alt="Mole"
+                  className="mole-img"
+                  onClick={() => whackMole(index)}
+                />
               )}
             </div>
           ))}

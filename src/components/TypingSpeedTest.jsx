@@ -1,24 +1,23 @@
 import React, { useState, useEffect, useRef } from 'react';
 import '../assets/TypingSpeedTest.css';
 
-// ✅ Replace this list with any domain-specific words if needed
+// ✨ Human-like, non-computerized word list
 const wordList = [
-  "about", "above", "access", "account", "action", "active", "across", "advert", "agency", "almost", "amount",
-  "answer", "around", "article", "author", "average", "before", "behind", "benefit", "beyond", "budget", "career",
-  "chance", "change", "charge", "choice", "client", "common", "create", "credit", "design", "detail", "device",
-  "digital", "editor", "effort", "email", "energy", "engine", "enough", "entire", "family", "feature", "global",
-  "growth", "impact", "income", "invest", "latest", "leader", "market", "method", "modern", "mobile", "moment",
-  "nation", "nature", "notice", "object", "online", "option", "policy", "portal", "prefer", "profit", "public",
-  "report", "result", "review", "search", "sector", "select", "server", "social", "source", "speech", "status",
-  "studio", "system", "target", "travel", "update", "upload", "user", "value", "visual", "volume", "website",
-  "window", "writer", "zone"
+  "apple", "banana", "guitar", "castle", "sunset", "elephant", "forest", "magic", "ocean", "river",
+  "mountain", "breeze", "cloud", "summer", "winter", "autumn", "spring", "travel", "planet", "daisy",
+  "coffee", "garden", "puzzle", "mirror", "candle", "feather", "velvet", "smile", "laughter", "parrot",
+  "storm", "whisper", "dream", "jungle", "flame", "shadow", "raindrop", "moonlight", "sunshine", "honey",
+  "pebble", "bamboo", "silent", "golden", "twilight", "canyon", "glimmer", "echo", "freedom", "adventure",
+  "island", "meadow", "tulip", "carousel", "blanket", "painter", "fiction", "lantern", "musical", "storybook",
+  "village", "lighthouse", "harvest", "fountain", "marble", "treasure", "ginger", "ribbon", "acorn", "sketch",
+  "pillow", "serene", "sparkle", "dragon", "butterfly", "crystal", "cotton", "firefly", "sunrise", "sapphire",
+  "mystery", "fortune", "blossom", "journey", "violin", "fairy", "legend", "sunbeam", "midnight", "balloon"
 ];
 
+// 👇 Random non-repeating word generator
 const generateWordList = (count) => {
-  return Array.from({ length: count }, () => {
-    const index = Math.floor(Math.random() * wordList.length);
-    return wordList[index];
-  });
+  const shuffled = [...wordList].sort(() => 0.5 - Math.random());
+  return shuffled.slice(0, count);
 };
 
 function TypingSpeedTest() {
@@ -33,7 +32,7 @@ function TypingSpeedTest() {
   const inputRef = useRef();
 
   useEffect(() => {
-    setWords(generateWordList(50));
+    setWords(generateWordList(90));
     inputRef.current.focus();
   }, []);
 
@@ -67,22 +66,25 @@ function TypingSpeedTest() {
 
     if (val.endsWith(' ')) {
       const trimmed = val.trim();
-      if (trimmed === words[currentWordIndex]) {
-        setCorrectCount(correctCount + 1);
+      const expected = words[currentWordIndex];
+
+      if (trimmed.toLowerCase() === expected.toLowerCase()) {
+        setCorrectCount((prev) => prev + 1);
       }
-      setCurrentWordIndex(currentWordIndex + 1);
+
+      setCurrentWordIndex((prev) => prev + 1);
       setInput('');
 
       // Auto-scroll
       if (currentWordIndex % 10 === 0) {
         const wordBox = document.querySelector('.word-box');
-        wordBox.scrollTop += 30;
+        if (wordBox) wordBox.scrollTop += 30;
       }
     }
   };
 
   const restartTest = () => {
-    setWords(generateWordList(50));
+    setWords(generateWordList(90));
     setInput('');
     setCurrentWordIndex(0);
     setCorrectCount(0);
@@ -93,28 +95,31 @@ function TypingSpeedTest() {
     inputRef.current.focus();
   };
 
-  const accuracy = Math.round((correctCount / Math.max(1, currentWordIndex)) * 100) || 0;
+  const accuracy = Math.round((correctCount / Math.max(1, currentWordIndex)) * 100);
 
   return (
     <div className="typing-container">
       <h1>Typing Speed Test</h1>
+
       <div className="word-box">
-        {words.map((word, index) => (
-          <span
-            key={index}
-            className={`word ${
-              index === currentWordIndex ? 'active-word' : ''
-            } ${
-              index < currentWordIndex
-                ? words[index] === input.trim()
-                  ? 'correct'
-                  : 'incorrect'
-                : ''
-            }`}
-          >
-            {word}
-          </span>
-        ))}
+        {words.map((word, index) => {
+          const isActive = index === currentWordIndex;
+          const isCorrect =
+            index < currentWordIndex &&
+            word.toLowerCase() === words[index].toLowerCase();
+          const isIncorrect = index < currentWordIndex && !isCorrect;
+
+          return (
+            <span
+              key={index}
+              className={`word ${isActive ? 'active-word' : ''} ${
+                isCorrect ? 'correct' : isIncorrect ? 'incorrect' : ''
+              }`}
+            >
+              {word}
+            </span>
+          );
+        })}
       </div>
 
       <input
@@ -123,17 +128,35 @@ function TypingSpeedTest() {
         onChange={handleChange}
         disabled={testEnded}
         ref={inputRef}
-        placeholder={testEnded ? "Test completed" : "Start typing..."}
+        placeholder={testEnded ? 'Test completed' : 'Start typing...'}
         className="typing-input"
       />
 
       <div className="stats-container">
-        <div className="stat"><span className="stat-label">Time:</span><span className="stat-value">{timeLeft}s</span></div>
-        <div className="stat"><span className="stat-label">WPM:</span><span className="stat-value">{wpm}</span></div>
-        <div className="stat"><span className="stat-label">Accuracy:</span><span className="stat-value">{accuracy}%</span></div>
-        <div className="stat"><span className="stat-label">Correct:</span><span className="stat-value">{correctCount}/{currentWordIndex}</span></div>
+        <div className="stat">
+          <span className="stat-label">Time:</span>
+          <span className="stat-value">{timeLeft}s</span>
+        </div>
+        <div className="stat">
+          <span className="stat-label">WPM:</span>
+          <span className="stat-value">{wpm}</span>
+        </div>
+        <div className="stat">
+          <span className="stat-label">Accuracy:</span>
+          <span className="stat-value">{accuracy}%</span>
+        </div>
+        <div className="stat">
+          <span className="stat-label">Correct:</span>
+          <span className="stat-value">
+            {correctCount}/{currentWordIndex}
+          </span>
+        </div>
       </div>
-      <p className="note">📝 Note: After typing a word, press the <strong>spacebar</strong> to move to the next word.</p>
+
+      <p className="note">
+        📝 Note: After typing a word, press the <strong>spacebar</strong> to move to the next word.
+      </p>
+
       {testEnded && (
         <div className="result-modal">
           <h2>Test Results</h2>
