@@ -16,12 +16,15 @@ const FlappyBird = () => {
   const [pipes, setPipes] = useState([]);
   const [score, setScore] = useState(0);
   const [isGameOver, setIsGameOver] = useState(false);
+  const [hasStarted, setHasStarted] = useState(false); // new state
 
   const gameRef = useRef();
   const gameInterval = useRef();
 
   const jump = () => {
-    if (!isGameOver) setVelocity(JUMP_STRENGTH);
+    if (!isGameOver && hasStarted) {
+      setVelocity(JUMP_STRENGTH);
+    }
   };
 
   const resetGame = () => {
@@ -30,33 +33,34 @@ const FlappyBird = () => {
     setPipes([]);
     setScore(0);
     setIsGameOver(false);
+    setHasStarted(false); // go back to welcome screen
   };
 
   useEffect(() => {
-    if (isGameOver) return;
+    if (isGameOver || !hasStarted) return;
 
     const generatePipe = () => {
-    const minPipeHeight = 100; // avoid tiny top pipes
-    const maxPipeHeight = 250; // avoid huge top pipes
-    const topHeight = Math.floor(Math.random() * (maxPipeHeight - minPipeHeight)) + minPipeHeight;
+      const minPipeHeight = 100;
+      const maxPipeHeight = 250;
+      const topHeight = Math.floor(Math.random() * (maxPipeHeight - minPipeHeight)) + minPipeHeight;
 
-    setPipes((prev) => [
-      ...prev,
-      {
-        left: GAME_WIDTH,
-        topHeight,
-        bottomY: topHeight + PIPE_GAP,
-        scored: false
-      },
-    ]);
-  };
+      setPipes((prev) => [
+        ...prev,
+        {
+          left: GAME_WIDTH,
+          topHeight,
+          bottomY: topHeight + PIPE_GAP,
+          scored: false,
+        },
+      ]);
+    };
 
     const pipeInterval = setInterval(generatePipe, 2000);
     return () => clearInterval(pipeInterval);
-  }, [isGameOver]);
+  }, [isGameOver, hasStarted]);
 
   useEffect(() => {
-    if (isGameOver) return;
+    if (isGameOver || !hasStarted) return;
 
     gameInterval.current = setInterval(() => {
       setBirdY((y) => Math.min(GAME_HEIGHT - BIRD_SIZE, y + velocity));
@@ -73,14 +77,15 @@ const FlappyBird = () => {
     }, 30);
 
     return () => clearInterval(gameInterval.current);
-  }, [velocity, isGameOver]);
+  }, [velocity, isGameOver, hasStarted]);
 
   useEffect(() => {
+    if (!hasStarted) return;
+
     pipes.forEach((pipe) => {
       const birdX = 60;
       const birdBottom = birdY + BIRD_SIZE;
       const inPipe = pipe.left < birdX + BIRD_SIZE && pipe.left + PIPE_WIDTH > birdX;
-
       const hitTop = birdY < pipe.topHeight;
       const hitBottom = birdBottom > pipe.bottomY;
 
@@ -89,7 +94,6 @@ const FlappyBird = () => {
         clearInterval(gameInterval.current);
       }
 
-      // Score when passing pipe
       if (!pipe.scored && pipe.left + PIPE_WIDTH < birdX) {
         pipe.scored = true;
         setScore((s) => s + 1);
@@ -100,25 +104,25 @@ const FlappyBird = () => {
       setIsGameOver(true);
       clearInterval(gameInterval.current);
     }
-  }, [pipes, birdY]);
+  }, [pipes, birdY, hasStarted]);
 
   return (
     <div className="flappy-wrapper">
       <div className="game-area" ref={gameRef} onClick={jump}>
-        <div className="bird" style={{
-    top: birdY,
-    backgroundImage: `url(${birdImg})`,
-    backgroundSize: 'contain',
-    backgroundRepeat: 'no-repeat',
-    backgroundPosition: 'center',
-  }}></div>
+        <div
+          className="bird"
+          style={{
+            top: birdY,
+            backgroundImage: `url(${birdImg})`,
+            backgroundSize: 'contain',
+            backgroundRepeat: 'no-repeat',
+            backgroundPosition: 'center',
+          }}
+        ></div>
 
         {pipes.map((pipe, index) => (
           <React.Fragment key={index}>
-            <div
-              className="pipe top-pipe"
-              style={{ left: pipe.left, height: pipe.topHeight }}
-            ></div>
+            <div className="pipe top-pipe" style={{ left: pipe.left, height: pipe.topHeight }}></div>
             <div
               className="pipe bottom-pipe"
               style={{
@@ -132,9 +136,17 @@ const FlappyBird = () => {
 
         <div className="score-label">Score: {score}</div>
 
+        {!hasStarted && !isGameOver && (
+          <div className="start-screen">
+            <p className="start-message">Click to begin your flight!</p>
+            <button onClick={() => setHasStarted(true)}>Let's Start!</button>
+          </div>
+        )}
+
         {isGameOver && (
-          <div className="game-over">
+          <div className="game-over-flappy">
             <p>Game Over!</p>
+            <p>Final Score: {score}</p>
             <button onClick={resetGame}>Play Again</button>
           </div>
         )}

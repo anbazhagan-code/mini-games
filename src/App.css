@@ -233,7 +233,38 @@ body::after {
   backdrop-filter: blur(5px);
   border-top: 1px solid rgba(255, 255, 255, 0.1);
 }
+.app-footer form {
+  margin-top: 15px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 10px;
+}
 
+.suggestion-input {
+  padding: 8px 12px;
+  font-size: 14px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  min-width: 200px;
+  max-width: 100%;
+}
+
+.app-footer button {
+  padding: 8px 16px;
+  font-size: 14px;
+  background-color: #4caf50;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.app-footer button:hover {
+  background-color: #45a049;
+}
 /* Animations */
 @keyframes fadeIn {
   from {

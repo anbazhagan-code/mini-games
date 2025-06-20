@@ -28,7 +28,7 @@ const WhackAMole = () => {
     setScore(prevScore => {
       const newScore = prevScore + 1;
       // Increase speed every 5 points
-      if (newScore % 5 === 0 && gameSpeed > 300) {
+      if (newScore % 10 === 0 && gameSpeed > 300) {
         setGameSpeed(prevSpeed => Math.max(300, prevSpeed - 50));
       }
       return newScore;
@@ -147,7 +147,6 @@ const WhackAMole = () => {
                   src={moleup}
                   alt="Mole"
                   className="mole-img"
-                  onClick={() => whackMole(index)}
                 />
               )}
             </div>

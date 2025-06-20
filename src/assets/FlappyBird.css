@@ -56,10 +56,51 @@
   z-index: 3;
 }
 
-.game-over {
+.start-screen {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  margin: 0;
+  background: linear-gradient(to bottom, #87CEEB, #ffffff); /* sky blue to white */
+  position: absolute;
+  width: 100%;
+  top: 0;
+  left: 0;
+  z-index: 10;
+}
+
+.start-message {
+  font-size: 1.2rem;
+  margin-bottom: 16px;
+  color: #333;
+  font-weight: 500;
+  text-align: center;
+  text-shadow: 1px 1px 1px #fff;
+}
+
+.start-screen button {
+  padding: 12px 24px;
+  font-size: 1rem;
+  background-color: #ffcc00;
+  color: #333;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: transform 0.2s ease, background-color 0.3s ease;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+}
+
+.start-screen button:hover {
+  background-color: #ffdd33;
+  transform: scale(1.05);
+}
+
+.game-over-flappy {
   position: absolute;
   top: 40%;
-  left: 25%;
+  left: 50%;
   transform: translate(-50%, -50%);
   background-color: rgba(0, 0, 0, 0.7);
   padding: 30px;
@@ -69,7 +110,7 @@
   z-index: 5;
 }
 
-.game-over button {
+.game-over-flappy button {
   margin-top: 15px;
   padding: 10px 20px;
   font-weight: bold;
@@ -81,7 +122,7 @@
   transition: background 0.2s;
 }
 
-.game-over button:hover {
+.game-over-flappy button:hover {
   background: #e64a19;
 }
 .game-area,

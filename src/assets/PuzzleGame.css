@@ -35,7 +35,7 @@
   justify-content: space-between;
   align-items: center;
   width: 100%;
-  max-width: 320px;
+  max-width: 518px;
   margin-bottom: 15px;
   font-size: 18px;
   color: #555;
@@ -181,10 +181,6 @@
     align-items: stretch;
     max-width: 280px;
     font-size: 16px;
-  }
-
-  .controls > * {
-    width: 100%;
   }
 
   .controls select {

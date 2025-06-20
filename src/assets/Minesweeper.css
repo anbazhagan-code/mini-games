@@ -144,7 +144,7 @@
   grid-template-rows: repeat(var(--size), 40px);
   gap: 2px;
   background: #999;
-  padding: 10px;
+  padding: 5px;
   border-radius: 6px;
   box-shadow: 
     0 6px 12px rgba(0,0,0,0.2),

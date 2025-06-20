@@ -74,10 +74,28 @@ function AppContent() {
       </main>
 
       {showFooter && (
-        <footer className="app-footer">
-          <p>© {new Date().getFullYear()} Developed by Anbazhagan. All rights reserved.</p>
-        </footer>
-      )}
+      <footer className="app-footer">
+        <p>© {new Date().getFullYear()} Developed by Anbazhagan. All rights reserved.</p>
+
+        <form
+          onSubmit={(e) => {
+            e.preventDefault();
+            const suggestion = e.target.elements.gameSuggestion.value;
+            window.location.href = `mailto:anbazhagan.code@gmail.com?subject=Game Suggestion&body=${encodeURIComponent(suggestion)}`;
+          }}
+          style={{ marginTop: '10px' }}
+        >
+          <input
+            type="text"
+            name="gameSuggestion"
+            placeholder="Suggest a game..."
+            className="suggestion-input"
+            required
+          />
+          <button type="submit">Send</button>
+        </form>
+      </footer>
+    )}
     </div>
   );
 }
