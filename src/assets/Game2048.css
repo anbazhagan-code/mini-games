@@ -187,6 +187,22 @@
 .game-2048__restart-btn:hover {
   background: #ef6c00;
 }
+.game-2048__scoreboard {
+  display: flex;
+  justify-content: center;
+  gap: 2rem;
+  margin-bottom: 1rem;
+}
+
+.score-box {
+  background: #bbada0;
+  color: #fff;
+  padding: 0.5rem 1.2rem;
+  font-size: 1.2rem;
+  font-weight: bold;
+  border-radius: 5px;
+}
+
 /* Responsive adjustments */
 @media (max-width: 500px) {
   .control-btn {

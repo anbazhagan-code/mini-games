@@ -37,37 +37,45 @@ const reverseRows = (board) => {
 
 const combineRow = (row) => {
   let newRow = row.filter(val => val !== 0);
+  let scoreGained = 0;
   for (let i = 0; i < newRow.length - 1; i++) {
     if (newRow[i] === newRow[i + 1]) {
       newRow[i] *= 2;
+      scoreGained += newRow[i];
       newRow[i + 1] = 0;
     }
   }
   newRow = newRow.filter(val => val !== 0);
   while (newRow.length < SIZE) newRow.push(0);
-  return newRow;
+  return { row: newRow, score: scoreGained };
 };
 
 const moveLeft = (board) => {
-  return board.map(row => combineRow(row));
+  let scoreGained = 0;
+  const newBoard = board.map(row => {
+    const { row: newRow, score } = combineRow(row);
+    scoreGained += score;
+    return newRow;
+  });
+  return { board: newBoard, score: scoreGained };
 };
 
 const moveRight = (board) => {
   const reversed = reverseRows(board);
-  const moved = moveLeft(reversed);
-  return reverseRows(moved);
+  const { board: moved, score } = moveLeft(reversed);
+  return { board: reverseRows(moved), score };
 };
 
 const moveUp = (board) => {
-  let transposed = transpose(board);
-  transposed = moveLeft(transposed);
-  return transpose(transposed);
+  const transposed = transpose(board);
+  const { board: moved, score } = moveLeft(transposed);
+  return { board: transpose(moved), score };
 };
 
 const moveDown = (board) => {
-  let transposed = transpose(board);
-  transposed = moveRight(transposed);
-  return transpose(transposed);
+  const transposed = transpose(board);
+  const { board: moved, score } = moveRight(transposed);
+  return { board: transpose(moved), score };
 };
 
 const boardsEqual = (b1, b2) => {
@@ -83,6 +91,10 @@ export default function Game2048() {
   const [board, setBoard] = useState(getInitialBoard());
   const [gameOver, setGameOver] = useState(false);
   const [won, setWon] = useState(false);
+  const [score, setScore] = useState(0);
+  const [highScore, setHighScore] = useState(() => {
+    return parseInt(localStorage.getItem('highScore')) || 0;
+  });
 
   const checkGameOver = (board) => {
     for (let r = 0; r < SIZE; r++) {
@@ -97,9 +109,15 @@ export default function Game2048() {
 
   const handleMove = (moveFn) => {
     if (gameOver || won) return;
-    const newBoard = moveFn(cloneBoard(board));
+    const { board: newBoard, score: gained } = moveFn(cloneBoard(board));
     if (!boardsEqual(board, newBoard)) {
       addRandomTile(newBoard);
+      const newScore = score + gained;
+      setScore(newScore);
+      if (newScore > highScore) {
+        setHighScore(newScore);
+        localStorage.setItem('highScore', newScore.toString());
+      }
       setBoard(newBoard);
 
       if (newBoard.some(row => row.includes(2048))) {
@@ -138,6 +156,7 @@ export default function Game2048() {
     setBoard(getInitialBoard());
     setGameOver(false);
     setWon(false);
+    setScore(0);
   };
 
   const getTileClass = (value) => {
@@ -147,6 +166,10 @@ export default function Game2048() {
   return (
     <div className="game-2048">
       <h2 className="game-2048__title">2048 Game</h2>
+      <div className="game-2048__scoreboard">
+        <div className="score-box">Score: {score}</div>
+        <div className="score-box">High Score: {highScore}</div>
+      </div>
       <div className="game-2048__board">
         {board.map((row, r) => (
           <div className="game-2048__row" key={r}>
@@ -159,21 +182,21 @@ export default function Game2048() {
         ))}
       </div>
       <div className="game-2048__controls">
-  <button onClick={() => handleMove(moveUp)} className="control-btn">↑</button>
-  <div style={{ display: 'flex', gap: '5rem' }}>
-    <button onClick={() => handleMove(moveLeft)} className="control-btn">←</button>
-    <button onClick={() => handleMove(moveRight)} className="control-btn">→</button>
-  </div>
-  <button onClick={() => handleMove(moveDown)} className="control-btn">↓</button>
-</div>
-      {(gameOver || won) && (
-      <div className="game-2048__overlay">
-        <div className="game-2048__message">
-          {won ? '🎉 You Win! 🎉' : 'Game Over 😞'}
-          <button className="game-2048__restart-btn" onClick={restartGame}>Restart</button>
+        <button onClick={() => handleMove(moveUp)} className="control-btn">↑</button>
+        <div style={{ display: 'flex', gap: '5rem' }}>
+          <button onClick={() => handleMove(moveLeft)} className="control-btn">←</button>
+          <button onClick={() => handleMove(moveRight)} className="control-btn">→</button>
         </div>
+        <button onClick={() => handleMove(moveDown)} className="control-btn">↓</button>
       </div>
-    )}
+      {(gameOver || won) && (
+        <div className="game-2048__overlay">
+          <div className="game-2048__message">
+            {won ? '🎉 You Win! 🎉' : 'Game Over 😞'}
+            <button className="game-2048__restart-btn" onClick={restartGame}>Restart</button>
+          </div>
+        </div>
+      )}
     </div>
   );
 }
