@@ -1,7 +1,7 @@
 {
   "files": {
     "main.css": "/mini-games/static/css/main.aa79713c.css",
-    "main.js": "/mini-games/static/js/main.9ce9ce8e.js",
+    "main.js": "/mini-games/static/js/main.7125a134.js",
     "static/css/66.a5fb2b91.chunk.css": "/mini-games/static/css/66.a5fb2b91.chunk.css",
     "static/js/66.656fa275.chunk.js": "/mini-games/static/js/66.656fa275.chunk.js",
     "static/css/45.0987fd5a.chunk.css": "/mini-games/static/css/45.0987fd5a.chunk.css",
@@ -20,13 +20,13 @@
     "static/js/956.2a77b56e.chunk.js": "/mini-games/static/js/956.2a77b56e.chunk.js",
     "static/css/87.148ed99c.chunk.css": "/mini-games/static/css/87.148ed99c.chunk.css",
     "static/js/87.06347709.chunk.js": "/mini-games/static/js/87.06347709.chunk.js",
-    "static/css/685.5f4485ce.chunk.css": "/mini-games/static/css/685.5f4485ce.chunk.css",
-    "static/js/685.f7fa5170.chunk.js": "/mini-games/static/js/685.f7fa5170.chunk.js",
+    "static/css/685.76eb27af.chunk.css": "/mini-games/static/css/685.76eb27af.chunk.css",
+    "static/js/685.0e99a049.chunk.js": "/mini-games/static/js/685.0e99a049.chunk.js",
     "static/media/mole-up.png": "/mini-games/static/media/mole-up.bab41b2859bb1a0fb817.png",
     "static/media/bird.png": "/mini-games/static/media/bird.5c6782a02b9ae6820ca4.png",
     "index.html": "/mini-games/index.html",
     "main.aa79713c.css.map": "/mini-games/static/css/main.aa79713c.css.map",
-    "main.9ce9ce8e.js.map": "/mini-games/static/js/main.9ce9ce8e.js.map",
+    "main.7125a134.js.map": "/mini-games/static/js/main.7125a134.js.map",
     "66.a5fb2b91.chunk.css.map": "/mini-games/static/css/66.a5fb2b91.chunk.css.map",
     "66.656fa275.chunk.js.map": "/mini-games/static/js/66.656fa275.chunk.js.map",
     "45.0987fd5a.chunk.css.map": "/mini-games/static/css/45.0987fd5a.chunk.css.map",
@@ -45,11 +45,11 @@
     "956.2a77b56e.chunk.js.map": "/mini-games/static/js/956.2a77b56e.chunk.js.map",
     "87.148ed99c.chunk.css.map": "/mini-games/static/css/87.148ed99c.chunk.css.map",
     "87.06347709.chunk.js.map": "/mini-games/static/js/87.06347709.chunk.js.map",
-    "685.5f4485ce.chunk.css.map": "/mini-games/static/css/685.5f4485ce.chunk.css.map",
-    "685.f7fa5170.chunk.js.map": "/mini-games/static/js/685.f7fa5170.chunk.js.map"
+    "685.76eb27af.chunk.css.map": "/mini-games/static/css/685.76eb27af.chunk.css.map",
+    "685.0e99a049.chunk.js.map": "/mini-games/static/js/685.0e99a049.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.aa79713c.css",
-    "static/js/main.9ce9ce8e.js"
+    "static/js/main.7125a134.js"
   ]
 }
